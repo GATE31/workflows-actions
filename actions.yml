@@ -1,5 +1,5 @@
 name: 'build and deploy'
-descriptions: 'description'
+description: 'description'
 inputs:
   project-version:
     description: 'project-version in package.json',
