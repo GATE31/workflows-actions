@@ -10,9 +10,9 @@ inputs:
   push-command:
     description: 'command for push docker-container in YC',
     required: true
-uotputs:
+outputs:
   times:
-    descriptions: 'uotputs times descriptions'
+    descriptions: 'outputs times descriptions'
 runs:
   using: 'nodejs12'
   main: 'index.js'
