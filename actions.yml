@@ -16,3 +16,4 @@ outputs:
 runs:
   using: 'nodejs12'
   main: 'index.js'
+
