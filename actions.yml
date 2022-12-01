@@ -1,0 +1,18 @@
+name: 'build and deploy'
+descriptions: 'description'
+inputs:
+  project-version:
+    description: 'project-version in package.json',
+    required: true
+  build-command:
+    description: 'command for build docker-container',
+    required: true
+  push-command:
+    description: 'command for push docker-container in YC',
+    required: true
+uotputs:
+  times:
+    descriptions: 'uotputs times descriptions'
+runs:
+  using: 'nodejs12'
+  main: 'index.js'
