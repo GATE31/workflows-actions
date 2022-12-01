@@ -9,6 +9,16 @@ try {
   const pushCommand = core.getInput('push-command');
 
   // Собираю контеинер
+  exec('ls', (error, stdout, stderr) => {
+    if (error) {
+      console.log(error)
+      return;
+    }
+
+    console.log('ls:' + stdout)
+  })
+
+  // Собираю контеинер
   exec(`${buildCommand} PROJECT_VERSION=${projectVersion}`, (error, stdout, stderr) => {
     if (error) {
       console.log(error)
