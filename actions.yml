@@ -3,15 +3,15 @@ descriptions: 'description'
 inputs:
   project-version:
     description: 'project-version in package.json',
-    required: true
+    required: false
   build-command:
     description: 'command for build docker-container',
-    required: true
+    required: false
   push-command:
     description: 'command for push docker-container in YC',
-    required: true
+    required: false
 outputs:
-  times:
+  test:
     descriptions: 'outputs times descriptions'
 runs:
   using: 'nodejs12'

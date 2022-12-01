@@ -11,8 +11,7 @@ try {
   // Собираю контеинер
   exec('ls', (error, stdout, stderr) => {
     if (error) {
-      console.log(error)
-      return;
+      core.setFailed(error.message);
     }
 
     console.log('ls:' + stdout)
@@ -21,8 +20,7 @@ try {
   // Собираю контеинер
   exec(`${buildCommand} PROJECT_VERSION=${projectVersion}`, (error, stdout, stderr) => {
     if (error) {
-      console.log(error)
-      return;
+      core.setFailed(error.message);
     }
 
     console.log(stdout)
@@ -31,12 +29,14 @@ try {
   // Пушим контейнер
   exec(`${pushCommand} PROJECT_VERSION=${projectVersion}`, (error, stdout, stderr) => {
     if (error) {
-      console.log(error)
-      return;
+      core.setFailed(error.message)
     }
 
     console.log(stdout)
   })
+
+
+  core.setOutput('test', 'testValue')
 
 } catch (error) {
   core.setFailed(error.message)
