@@ -10,5 +10,11 @@ jobs:
       - name: Get-npm-version
         id: package-version
         uses: martinbeentjes/npm-get-version-action@main
+      - name: checked
+        run: ls
       - name: use my action
         uses: GATE31/workflows-actions@v1
+        with:
+          project-version: 1
+          build-command: echo build
+          push-command: echo build
