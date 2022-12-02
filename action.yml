@@ -1,19 +1,13 @@
-name: 'build and deploy'
-description: 'description'
+name: 'Hello World'
+description: 'Greet someone and record the time'
 inputs:
-  project-version:
-    description: 'project-version in package.json',
-    required: false
-  build-command:
-    description: 'command for build docker-container',
-    required: false
-  push-command:
-    description: 'command for push docker-container in YC',
-    required: false
+  who-to-greet:  # id of input
+    description: 'Who to greet'
+    required: true
+    default: 'World'
 outputs:
-  test:
-    descriptions: 'outputs times descriptions'
+  time: # id of output
+    description: 'The time we greeted you'
 runs:
-  using: 'nodejs12'
+  using: 'node16'
   main: 'index.js'
-
