@@ -2,14 +2,14 @@ name: fff
 on: push
 
 jobs:
-  docker-build-and-deploy:
+  first:
     runs-on: ubuntu-latest
     steps:
       - name: Git clone repository
         uses: actions/checkout@v1
-      - name: Get-npm-version
-        id: package-version
-        uses: martinbeentjes/npm-get-version-action@main
+#      - name: Get-npm-version
+#        id: package-version
+#        uses: martinbeentjes/npm-get-version-action@main
       - name: checked
         run: ls
       - name: use my action
