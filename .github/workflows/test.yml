@@ -1,20 +1,7 @@
-name: fff
-on: push
 
-jobs:
-  first:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Git clone repository
-        uses: actions/checkout@v1
-      - name: Get-npm-version
-        id: package-version
-        uses: martinbeentjes/npm-get-version-action@main
-      - name: checked
-        run: ls
-      - name: use my action
-        uses: GATE31/workflows-actions@v1
-        with:
-          project-version: 1
-          build-command: echo build
-          push-command: echo build
+uses: octocat/hello-world-javascript-action@v1.1
+with:
+  who-to-greet: 'Mona the Octocat'
+# Use the output from the `hello` step
+- name: Get the output time
+  run: echo "The time was ${{ steps.hello.outputs.time }}"
