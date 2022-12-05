@@ -1,6 +1,6 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
-const { exec } = require('node:child_process');
+const { exec } = require('child_process');
 
 try {
   // docker-build
@@ -9,7 +9,21 @@ try {
 
   const projectVersion = core.getInput('project-version');
 
-  exec('ls', (error, stdout, stderr) => {
+  async function build() {
+    await exec(`make build-container PROJECT_VERSION=${projectVersion}`, (error, stdout, stderr) => {
+      if (error) {
+        console.error(`exec error: ${error}`);
+        return;
+      }
+
+      console.log(`stdout: ${stdout}`);
+      console.error(`stderr: ${stderr}`);
+    });
+  }
+
+  await build()
+
+  exec('docker ps -a', (error, stdout, stderr) => {
     if (error) {
       console.error(`exec error: ${error}`);
       return;
