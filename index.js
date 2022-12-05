@@ -7,35 +7,39 @@ try {
   // docker-push
   // update-work-version
 
-  async function process() {
-    const projectVersion = core.getInput('project-version');
+  const projectVersion = core.getInput('project-version');
 
-    async function build() {
-      await exec(`make build-container PROJECT_VERSION=${projectVersion}`, (error, stdout, stderr) => {
+  const buildPromise = new Promise((res, rej) => {
+    // docker build
+    exec(`make build-container PROJECT_VERSION=${projectVersion}`, (error, stdout, stderr) => {
+      if (error) {
+        console.error(`exec error: ${error}`);
+        rej(error);
+      }
+
+      console.log(`stdout: ${stdout}`);
+      console.error(`stderr: ${stderr}`);
+
+      res(stdout)
+    });
+  })
+
+  buildPromise
+    .then(() => {
+      exec('docker ps -a', (error, stdout, stderr) => {
         if (error) {
           console.error(`exec error: ${error}`);
           return;
         }
-
         console.log(`stdout: ${stdout}`);
         console.error(`stderr: ${stderr}`);
       });
-    }
+    })
+    .then(() => {
+      console.log(`projectVersion: ${projectVersion}`);
+      core.setOutput("time", projectVersion);
+    })
 
-    await build()
-
-    exec('docker ps -a', (error, stdout, stderr) => {
-      if (error) {
-        console.error(`exec error: ${error}`);
-        return;
-      }
-      console.log(`stdout: ${stdout}`);
-      console.error(`stderr: ${stderr}`);
-    });
-
-    console.log(`projectVersion: ${projectVersion}`);
-    core.setOutput("time", projectVersion);
-  }
 
   // const nameToGreet = core.getInput('who-to-greet');
   // console.log(`Hello ${nameToGreet}!`);
