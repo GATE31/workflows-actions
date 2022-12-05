@@ -8,7 +8,7 @@ jobs:
       # To use this repository's private action,
       # you must check out the repository
       - name: Hello world action step
-        uses: GATE31/workflows-actions@v2 # Uses an action in the root directory
+        uses: GATE31/workflows-actions@v3 # Uses an action in the root directory
         id: hello
         with:
           project-version: '1.3.4'
