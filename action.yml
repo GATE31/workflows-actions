@@ -1,12 +1,12 @@
-name: 'Hello World'
-description: 'Greet someone and record the time'
+name: 'deploy docker in YC'
+description: 'deploy docker in YC for GATE31'
 inputs:
-  project-version:  # id of input
-    description: 'Who to greet'
+  project-version:
+    description: 'project version'
     required: true
-    default: 'World'
+    default: '1.0.0'
 outputs:
-  time: # id of output
+  time:
     description: 'The time we greeted you'
 runs:
   using: 'node16'
